@@ -1,6 +1,6 @@
-# Serverless App
+# TaskFlow
 
-Aplicación web full-stack serverless con autenticación, base de datos en la nube y despliegue continuo.
+Aplicación web de lista de tareas (to-do) con autenticación, persistencia en la nube y despliegue continuo.
 
 ## Stack Tecnológico
 
