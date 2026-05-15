@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { signIn } from '@/lib/auth'
+import { signUp } from '@/lib/auth'
 import { useAuth } from '@/components/AuthProvider'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter()
   const { user, loading } = useAuth()
   const [email, setEmail] = useState('')
@@ -21,10 +21,14 @@ export default function LoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
+    if (password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres.')
+      return
+    }
     setSubmitting(true)
-    const { error } = await signIn(email, password)
+    const { error } = await signUp(email, password)
     if (error) {
-      setError('Email o contraseña incorrectos.')
+      setError('No se pudo crear la cuenta. Intentá con otro email.')
       setSubmitting(false)
     } else {
       router.replace('/dashboard')
@@ -45,9 +49,9 @@ export default function LoginPage() {
         </div>
 
         <h1 className="text-2xl font-semibold text-stone-900 tracking-tight mb-1">
-          Bienvenido de nuevo
+          Crear cuenta
         </h1>
-        <p className="text-sm text-stone-500 mb-8">Ingresá para ver tus tareas</p>
+        <p className="text-sm text-stone-500 mb-8">Empezá a organizar tus tareas</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
@@ -75,9 +79,9 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              placeholder="••••••••"
+              placeholder="Mínimo 6 caracteres"
               required
-              autoComplete="current-password"
+              autoComplete="new-password"
               className="px-3.5 py-2.5 border border-stone-200 rounded-lg text-sm text-stone-900 placeholder-stone-400 outline-none transition focus:border-blue-500 focus:ring-3 focus:ring-blue-100"
             />
           </div>
@@ -93,14 +97,14 @@ export default function LoginPage() {
             disabled={submitting}
             className="mt-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition cursor-pointer"
           >
-            {submitting ? 'Ingresando...' : 'Iniciar sesión'}
+            {submitting ? 'Creando cuenta...' : 'Crear cuenta'}
           </button>
         </form>
 
         <p className="text-center text-sm text-stone-500 mt-6">
-          ¿No tenés cuenta?{' '}
-          <Link href="/register" className="text-blue-600 font-medium hover:underline">
-            Crear cuenta
+          ¿Ya tenés cuenta?{' '}
+          <Link href="/" className="text-blue-600 font-medium hover:underline">
+            Iniciar sesión
           </Link>
         </p>
       </div>
