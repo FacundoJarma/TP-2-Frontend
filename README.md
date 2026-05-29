@@ -29,7 +29,7 @@ Crear un archivo `.env.local` en la raíz del proyecto con las siguientes variab
 | Variable | Descripción |
 |---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | URL del proyecto en Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clave anónima de Supabase (pública, segura para el cliente) |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Clave anónima de Supabase (pública, segura para el cliente) |
 
 ## Estructura del Proyecto
 
