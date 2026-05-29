@@ -13,7 +13,7 @@ export interface Task {
   created_at: string
 }
 
-export type TaskInsert = Pick<Task, 'title' | 'description'>
+export type TaskInsert = Pick<Task, 'title' | 'description'> & { user_id?: string }
 export type TaskUpdate = Partial<Pick<Task, 'title' | 'description'>>
 
 export type Tables = {

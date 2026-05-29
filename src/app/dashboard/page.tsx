@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut } from '@/lib/auth'
 import { getTasks, createTask, updateTask, deleteTask } from '@/lib/db'
-import { useAuth } from '@/components/AuthProvider'
+import { useAuth } from '../components/AuthProvider'
 import type { Task } from '@/lib/types'
 
 function formatDate(dateStr: string) {

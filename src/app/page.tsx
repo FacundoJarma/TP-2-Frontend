@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from '@/lib/auth'
-import { useAuth } from '@/components/AuthProvider'
+import { useAuth } from './components/AuthProvider'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -24,6 +24,8 @@ export default function LoginPage() {
     setSubmitting(true)
     const { error } = await signIn(email, password)
     if (error) {
+      console.log('Error al crear cuenta:', error)
+
       setError('Email o contraseña incorrectos.')
       setSubmitting(false)
     } else {

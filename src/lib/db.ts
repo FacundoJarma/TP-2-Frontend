@@ -14,9 +14,12 @@ export async function getTasks(userId: string) {
 
 export async function createTask(data: TaskInsert) {
   const supabase = createClient()
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError || !user) return { data: null, error: userError ?? new Error('No autenticado') }
+
   const { data: newTask, error } = await supabase
     .from('tasks')
-    .insert(data)
+    .insert({ ...data, user_id: user.id })
     .select()
     .single()
 

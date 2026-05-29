@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signUp } from '@/lib/auth'
-import { useAuth } from '@/components/AuthProvider'
+import { useAuth } from '../components/AuthProvider'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -28,6 +28,7 @@ export default function RegisterPage() {
     setSubmitting(true)
     const { error } = await signUp(email, password)
     if (error) {
+      console.log('Error al crear cuenta:', error)
       setError('No se pudo crear la cuenta. Intentá con otro email.')
       setSubmitting(false)
     } else {
