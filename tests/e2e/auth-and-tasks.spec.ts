@@ -11,8 +11,8 @@ test.describe("Flujo principal: autenticación y tareas", () => {
   test("usuario puede loguearse y ver su dashboard", async ({ page }) => {
     await page.goto("/");
 
-    await page.getByLabel(/email/i).fill(process.env.E2E_TEST_EMAIL ?? "test@example.com");
-    await page.getByLabel(/contraseña|password/i).fill(process.env.E2E_TEST_PASSWORD ?? "password123");
+    await page.getByLabel(/email/i).fill("e2e-test@builddata.test");
+    await page.getByLabel(/contraseña|password/i).fill("12345678");
     await page.getByRole("button", { name: /iniciar sesión/i }).click();
 
     await expect(page).toHaveURL(/.*dashboard/);
@@ -22,8 +22,8 @@ test.describe("Flujo principal: autenticación y tareas", () => {
     page,
   }) => {
     await page.goto("/");
-    await page.getByLabel(/email/i).fill(process.env.E2E_TEST_EMAIL ?? "test@example.com");
-    await page.getByLabel(/contraseña|password/i).fill(process.env.E2E_TEST_PASSWORD ?? "password123");
+    await page.getByLabel(/email/i).fill("e2e-test@builddata.test");
+    await page.getByLabel(/contraseña|password/i).fill("12345678");
     await page.getByRole("button", { name: /iniciar sesión/i }).click();
     await expect(page).toHaveURL(/.*dashboard/);
 
